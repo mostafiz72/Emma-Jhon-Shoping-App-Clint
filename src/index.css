@@ -58,3 +58,16 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.paginations{
+  text-align: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.paginations .selected{
+  background-color: blue;
+  color: white;
+}

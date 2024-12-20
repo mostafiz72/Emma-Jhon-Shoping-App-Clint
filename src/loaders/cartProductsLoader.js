@@ -1,12 +1,23 @@
 import { getShoppingCart } from "../utilities/fakedb";
 
 const cartProductsLoader = async () => {
-    const loadedProducts = await fetch('http://localhost:5000/products');
+
+        // if cart data is in database, you have to use async await
+        const storedCart = getShoppingCart();  // amra joto gula card add to cart korsi sei gular data ase..
+
+        const storedCartId = Object.keys(storedCart)  ///// storedCatt er mordhe joto gula object ase tar key gula ami storedCartId er mordhe rekhe dilam....
+        console.log(storedCartId);
+
+    const loadedProducts = await fetch('http://localhost:5000/productByIds', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(storedCartId)
+        });
     const products = await loadedProducts.json();
 
-    // if cart data is in database, you have to use async await
-    const storedCart = getShoppingCart();
-
+   
     const savedCart = [];
 
     for (const id in storedCart) {
